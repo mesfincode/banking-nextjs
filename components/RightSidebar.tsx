@@ -38,8 +38,8 @@ const RightSidebar = ({user,transactions, banks}:RightSidebarProps) => {
         </div>
         {
           banks?.length > 0 && (
-            <div className='relative flex-1 flex-col items-center justify-center gap-5'>
-              <div className='relative z-10'>
+            <div className='relative flex-1 flex-col items-center justify-center gap-5 w-full'>
+              <div className='relative z-10 w-[90%]'>
                 <BankCard
                  key={banks[0].$id}
                  account ={banks[0]}
