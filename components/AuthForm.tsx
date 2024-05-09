@@ -52,6 +52,8 @@ const AuthForm = ({ type }: { type: string }) => {
           }
           if(type=== 'sign-in'){
             const response = await signIn({email:data.email,password: data.password});
+            console.log(response);
+
             if(response) router.push('/');
           }
     }catch(e){
