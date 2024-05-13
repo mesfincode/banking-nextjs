@@ -47,7 +47,7 @@ const account = await getAccount({appwriteItemId});
             </div>
             <RightSidebar
                 user={loggedIn}
-                transactions={accounts?.transactions}
+                transactions={account?.transactions}
                 banks={accountData?.slice(0,2)}
             />
         </section>
