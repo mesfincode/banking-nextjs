@@ -1,4 +1,5 @@
 import HeaderBox from '@/components/HeaderBox'
+import { Pagination } from '@/components/Pagenation';
 import TransactionTable from '@/components/TransactionTable';
 import { getAccount, getAccounts } from '@/lib/actions/bank.actions';
 import { getLoggedInUser } from '@/lib/actions/user.actions';
@@ -16,6 +17,12 @@ const TransactionHistory = async ({ searchParams: { id, page } }: SearchParamPro
   const appwriteItemId = (id as string) || accountData[0]?.appwriteItemId;
   const account = await getAccount({ appwriteItemId });
 
+  const rowsPerPages = 10;
+  const totalPages = Math.ceil(account.length/rowsPerPages)
+  const indexOfLastTransaction= currentPage* rowsPerPages;
+  const indexOfFirstTransaction= indexOfLastTransaction - rowsPerPages;
+  const currentTransactions = account.slice(indexOfFirstTransaction, indexOfLastTransaction);
+  
   return (
     <div className='transactions'>
       <div className='transactions-header'>
@@ -47,7 +54,16 @@ const TransactionHistory = async ({ searchParams: { id, page } }: SearchParamPro
 
         </div>
         <section className='flex w-full flex-col gap-6'>
-          <TransactionTable transactions={account?.transactions} />
+          <TransactionTable transactions={currentTransactions} />
+          {
+                            totalPages > 1 && (
+                                <Pagination 
+                        totalPages={totalPages}
+                        page={currentPage}
+
+                        />
+                            )
+                        }
         </section>
       </div>
     </div>
