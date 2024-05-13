@@ -9,6 +9,7 @@ import Footer from './Footer'
 import PlaidLink from './PlaidLink'
 
 const Sidebar = ({user}:SiderbarProps) => {
+    
     const pathname = usePathname()
   return (
    <section className='sidebar'>
